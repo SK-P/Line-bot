@@ -9,8 +9,10 @@ import time, random, sys, json, codecs, threading, glob, re, string, os, request
 from gtts import gTTS
 from googletrans import Translator
 botStart = time.time()
-cl = LINE("")
-cl.log("Auth Token : " + str(cl.authToken))
+tkn = json.load(codecs.open("tokens.json","r","utf-8"))
+cl = LINE(tkn["tokens"][0], appName="IOS\t8.14.2\tIphone X\t8.1.0") 
+print('主機-{} 登入成功 '.format(cl.profile.displayName))
+print("登入所花時間為"+str(format_timespan(time.time() - botStart)))
 profile = cl.getProfile()
 status = str(profile.statusMessage)
 lock = _name = " ŁÏŃĚ ßöᴛ運行中...\n\n✔已運行24høüř\n"
