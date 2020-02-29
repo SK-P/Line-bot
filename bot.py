@@ -222,7 +222,6 @@ def lineBot(op):
                 cl.findAndAddContactsByMid(op.param1)
                 cl.sendMessage(op.param1, "安安！{} 感謝您加我為好友！".format(str(contact.displayName)))
                 cl.sendMessage(op.param1, "目前半垢運行中^^")
-                cl.sendMessage(op.param1, "我的作者:line.me/ti/p/~08948883")
         if op.type == 11:
             group = cl.getGroup(op.param1)
             contact = cl.getContact(op.param2)
@@ -264,7 +263,6 @@ def lineBot(op):
                         cl.acceptGroupInvitation(op.param1)
                         cl.sendMessage(op.param1,text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
                         cl.sendMessage(op.param1, "我的作者：")
-                        cl.sendContact(op.param1, "u6d7323e6708db9b28cde08a110bd3e07")
                     except Exception as error:
                         print(error)
             if clMID in op.param3:
