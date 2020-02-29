@@ -11,7 +11,6 @@ botStart = time.time()
 tkn = json.load(codecs.open("tokens.json","r","utf-8"))
 cl = LINE(tkn["tokens"][0], appName="IOS\t8.14.2\tIphone X\t8.1.0") 
 print('主機-{} 登入成功 '.format(cl.profile.displayName))
-status = str(profile.statusMessage)
 lock = _name = "神牛運行中"
 oepoll = OEPoll(cl)
 readOpen = codecs.open("read.json","r","utf-8")
