@@ -626,7 +626,6 @@ def lineBot(op):
                     cl.sendMessage(to, str(helpMessage))
                 elif text.lower() == 'bot':
                     cl.sendMessage(to, "我的作者：")
-                    cl.sendContact(to, "u6d7323e6708db9b28cde08a110bd3e07")
                 elif "Ri " in msg.text:
                     Ri0 = text.replace("Ri ","")
                     Ri1 = Ri0.rstrip()
