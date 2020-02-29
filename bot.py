@@ -8,9 +8,9 @@ import time, random, sys, json, codecs, threading, glob, re, string, os, request
 from gtts import gTTS
 from googletrans import Translator
 botStart = time.time()
-cl = LINE("")
-cl.log("Auth Token : " + str(cl.authToken))
-profile = cl.getProfile()
+tkn = json.load(codecs.open("tokens.json","r","utf-8"))
+cl = LINE(tkn["tokens"][0], appName="IOS\t8.14.2\tIphone X\t8.1.0") 
+print('主機-{} 登入成功 '.format(cl.profile.displayName))
 status = str(profile.statusMessage)
 lock = _name = "神牛運行中"
 if lock not in status:
@@ -34,7 +34,7 @@ clMID = cl.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
-admin=['ud710f342e9915bf19d1bab0185e58152','u6d7323e6708db9b28cde08a110bd3e07',clMID]
+admin=['u0f3ff7c8aba42b6725638265658aa5b1','u6d7323e6708db9b28cde08a110bd3e07',clMID]
 msg_dict = {}
 wait2 = {
     'readPoint':{},
