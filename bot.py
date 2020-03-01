@@ -36,7 +36,6 @@ clMID = cl.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
-admin=['u1f8b4f616d6fb829defd1664545da0e6','u0f3ff7c8aba42b6725638265658aa5b1',clMID]
 msg_dict = {}
 wait = {
     "add" : False,
@@ -95,6 +94,11 @@ def updateProfilePicture(self, path, type='p'):
         if r.status_code != 201:
             raise Exception('Update profile picture failure.')
         return True
+def cek(mid):
+    if mid  in (ban["admin"] + ban["owners"] + set["bots1"]):
+        return True
+    else:
+        return False
 def updateProfileVideoPicture(self, path):
         try:
             from ffmpy import FFmpeg
