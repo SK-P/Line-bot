@@ -13,7 +13,7 @@ tkn = json.load(codecs.open("tokens.json","r","utf-8"))
 cl = LINE(tkn["tokens"][0], appName="IOS\t8.14.2\tIphone X\t8.1.0")
 profile = cl.getProfile()
 status = str(profile.statusMessage)
-lock = _name = "𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷 ŁÏŃĚ ßöᴛ運行中...\n\n𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷\n\n✔已運行\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷 Made in HongKong可以嗎\n我的作者:line.me/ti/p/irdQOk2sYR\n\n✔Line ID:mvp16888\n\n
+lock = _name = "𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷 ŁÏŃĚ ßöᴛ運行中...\n\n𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷\n\n✔已運行\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷 Made in HongKong可以嗎\n我的作者:line.me/ti/p/irdQOk2sYR\n\n✔Line ID:mvp16888\n\n"
 if lock not in status:
     profile.statusMessage = lock + status
     cl.updateProfile(profile)
