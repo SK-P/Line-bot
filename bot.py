@@ -22,7 +22,7 @@ else:
 oepoll = OEPoll(cl)
 readOpen = codecs.open("read.json","r","utf-8")
 settingsOpen = codecs.open("temp.json","r","utf-8")
-ban = json.load(codecs.open("ban.json","r","utf-8"))
+ban = codecs.open("ban.json","r","utf-8")
 read = json.load(readOpen)
 settings = json.load(settingsOpen)
 myProfile = {
