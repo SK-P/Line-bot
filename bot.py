@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁LINEBOT販售檔 賴0963564 改檔將會錯誤 請小心使用
+#|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁LINEBOT販售檔 賴88830221 改檔將會錯誤 請小心使用
 from linepy import *
 from datetime import datetime
 from time import sleep
@@ -9,8 +9,8 @@ import time, random, sys, json, codecs, threading, glob, re, string, os, request
 from gtts import gTTS
 from googletrans import Translator
 botStart = time.time()
-cl = LINE("")
-cl.log("Auth Token : " + str(cl.authToken))
+tkn = json.load(codecs.open("tokens.json","r","utf-8"))
+cl = LINE(tkn["tokens"][0], appName="IOS\t8.14.2\tIphone X\t8.1.0")
 profile = cl.getProfile()
 status = str(profile.statusMessage)
 lock = _name = "|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁  ŁÏŃĚ ßöᴛ運行中...\n\n|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁BOT\n\n✔已運行24høüř\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁ Made in HongKong可以嗎\n我的作者:line.me/ti/p/BZnwIRU5VY\n\n✔Line ID:88830221
