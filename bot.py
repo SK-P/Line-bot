@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#茶茶LINEBOT販售檔 賴0963564 改檔將會錯誤 請小心使用
 from linepy import *
 from datetime import datetime
 from time import sleep
@@ -8,10 +9,16 @@ import time, random, sys, json, codecs, threading, glob, re, string, os, request
 from gtts import gTTS
 from googletrans import Translator
 botStart = time.time()
-tkn = json.load(codecs.open("tokens.json","r","utf-8"))
-cl = LINE(tkn["tokens"][0], appName="IOS\t8.14.2\tIphone X\t8.1.0") 
-print('主機-{} 登入成功 '.format(cl.profile.displayName))
-lock = _name = "神牛運行中"
+cl = LINE("")
+cl.log("Auth Token : " + str(cl.authToken))
+profile = cl.getProfile()
+status = str(profile.statusMessage)
+lock = _name = "隨心  ŁÏŃĚ ßöᴛ運行中...\n\n隨心BOT\n\n✔已運行24høüř\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:隨心 Made in HongKong可以嗎\n我的作者:line.me/ti/p/~08948883\n\n✔Line ID:08948883 \n\n"
+if lock not in status:
+    profile.statusMessage = lock + status
+    cl.updateProfile(profile)
+else:
+    pass
 oepoll = OEPoll(cl)
 readOpen = codecs.open("read.json","r","utf-8")
 settingsOpen = codecs.open("temp.json","r","utf-8")
@@ -28,7 +35,7 @@ clMID = cl.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
-admin=['u0f3ff7c8aba42b6725638265658aa5b1','u6d7323e6708db9b28cde08a110bd3e07',clMID]
+admin=['ud710f342e9915bf19d1bab0185e58152','u6d7323e6708db9b28cde08a110bd3e07',clMID]
 msg_dict = {}
 wait2 = {
     'readPoint':{},
@@ -101,7 +108,6 @@ def helpmessage():
     helpMessage = """«指令表»
 ★_查看指令表_☆
 ［Help］查看全部指令
-
 ★_狀態查詢_☆
 ［Rebot］重新啟動機器
 ［Runtime］查看機器運行時間
@@ -110,7 +116,6 @@ def helpmessage():
 ［Set］查看設定
 ［About］查看自己的狀態
 ［bye］機器退出群組
-
 ★_自身設定_☆
 ［Add On/Off］自動加入好友 開啟/關閉
 ［Join On/Off］邀請自動進入群組 開啟/關閉
@@ -126,7 +131,6 @@ def helpmessage():
 ［sj On/Off］入群通知 開啟/關閉
 ［sl On/Off］退群通知 開啟/關閉
 ［ts On/OffI］偵測更新帳號 ex: 個簽, 頭貼, 姓名, 封面 
-
 ★_個人設定_☆
 ［Me］丟出自己好友資料
 ［MyMid］查看自己系統識別碼
@@ -142,7 +146,6 @@ def helpmessage():
 ［vi @］標註查看頭貼影片
 ［Cover @］標注查看封面
 ［Friendlist］查看好友清單
-
 ★_群組設定_☆
 ［Gowner］查看群組擁有者
 ［Gurl］丟出群組網址
@@ -179,7 +182,6 @@ def helpmessage():
 ［banlist］查看黑名單 #
 ［Sc gid］查看指定群組狀態
 ［Mc mid］指定mid友資查詢
-
 ★_特別設定_☆
 ［Tagall］標註群組所有成員
 ［SR/DR］已讀點 開啟/關閉
@@ -216,6 +218,7 @@ def lineBot(op):
                 cl.findAndAddContactsByMid(op.param1)
                 cl.sendMessage(op.param1, "安安！{} 感謝您加我為好友！".format(str(contact.displayName)))
                 cl.sendMessage(op.param1, "目前半垢運行中^^")
+                cl.sendMessage(op.param1, "我的作者:line.me/ti/p/~08948883")
         if op.type == 11:
             group = cl.getGroup(op.param1)
             contact = cl.getContact(op.param2)
@@ -257,6 +260,7 @@ def lineBot(op):
                         cl.acceptGroupInvitation(op.param1)
                         cl.sendMessage(op.param1,text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
                         cl.sendMessage(op.param1, "我的作者：")
+                        cl.sendContact(op.param1, "u6d7323e6708db9b28cde08a110bd3e07")
                     except Exception as error:
                         print(error)
             if clMID in op.param3:
@@ -620,6 +624,7 @@ def lineBot(op):
                     cl.sendMessage(to, str(helpMessage))
                 elif text.lower() == 'bot':
                     cl.sendMessage(to, "我的作者：")
+                    cl.sendContact(to, "u6d7323e6708db9b28cde08a110bd3e07")
                 elif "Ri " in msg.text:
                     Ri0 = text.replace("Ri ","")
                     Ri1 = Ri0.rstrip()
