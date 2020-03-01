@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#茶茶LINEBOT販售檔 賴0963564 改檔將會錯誤 請小心使用
+#|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁LINEBOT販售檔 賴0963564 改檔將會錯誤 請小心使用
 from linepy import *
 from datetime import datetime
 from time import sleep
@@ -13,7 +13,7 @@ cl = LINE("")
 cl.log("Auth Token : " + str(cl.authToken))
 profile = cl.getProfile()
 status = str(profile.statusMessage)
-lock = _name = "隨心  ŁÏŃĚ ßöᴛ運行中...\n\n隨心BOT\n\n✔已運行24høüř\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:隨心 Made in HongKong可以嗎\n我的作者:line.me/ti/p/~08948883\n\n✔Line ID:08948883 \n\n"
+lock = _name = "|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁  ŁÏŃĚ ßöᴛ運行中...\n\n|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁BOT\n\n✔已運行24høüř\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁ Made in HongKong可以嗎\n我的作者:line.me/ti/p/BZnwIRU5VY\n\n✔Line ID:88830221
 if lock not in status:
     profile.statusMessage = lock + status
     cl.updateProfile(profile)
@@ -218,7 +218,7 @@ def lineBot(op):
                 cl.findAndAddContactsByMid(op.param1)
                 cl.sendMessage(op.param1, "安安！{} 感謝您加我為好友！".format(str(contact.displayName)))
                 cl.sendMessage(op.param1, "目前半垢運行中^^")
-                cl.sendMessage(op.param1, "我的作者:line.me/ti/p/~08948883")
+                cl.sendMessage(op.param1, "我的作者:line.me/ti/p/BZnwIRU5VY")
         if op.type == 11:
             group = cl.getGroup(op.param1)
             contact = cl.getContact(op.param2)
@@ -260,7 +260,7 @@ def lineBot(op):
                         cl.acceptGroupInvitation(op.param1)
                         cl.sendMessage(op.param1,text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
                         cl.sendMessage(op.param1, "我的作者：")
-                        cl.sendContact(op.param1, "u6d7323e6708db9b28cde08a110bd3e07")
+                        cl.sendContact(op.param1, "u0bfeccf087fbf70fa639c061d3b2136a")
                     except Exception as error:
                         print(error)
             if clMID in op.param3:
@@ -624,7 +624,7 @@ def lineBot(op):
                     cl.sendMessage(to, str(helpMessage))
                 elif text.lower() == 'bot':
                     cl.sendMessage(to, "我的作者：")
-                    cl.sendContact(to, "u6d7323e6708db9b28cde08a110bd3e07")
+                    cl.sendContact(to, "u0bfeccf087fbf70fa639c061d3b2136a")
                 elif "Ri " in msg.text:
                     Ri0 = text.replace("Ri ","")
                     Ri1 = Ri0.rstrip()
@@ -1195,7 +1195,7 @@ def lineBot(op):
                 elif text.lower() == 'about':
                     try:
                         arr = []
-                        owner = "u6d7323e6708db9b28cde08a110bd3e07"
+                        owner = "u0bfeccf087fbf70fa639c061d3b2136a"
                         creator = cl.getContact(owner)
                         contact = cl.getContact(clMID)
                         grouplist = cl.getGroupIdsJoined()
@@ -1207,7 +1207,7 @@ def lineBot(op):
                         ret_ += "\n好友 : {}".format(str(len(contactlist)))
                         ret_ += "\n封鎖 : {}".format(str(len(blockedlist)))
                         ret_ += "\n《關於機器》"
-                        ret_ += "\n版本 : 妍羅王bot V1.0"
+                        ret_ += "\n版本 : bot V1.0"
                         ret_ += "\n作者 : {}".format(creator.displayName)
                         cl.sendMessage(to, str(ret_))
                     except Exception as e:
