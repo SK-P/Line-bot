@@ -873,21 +873,6 @@ def lineBot(op):
                         cl.updateGroup(X)
                     else:
                         cl.sendMessage(msg.to,"無法使用在群組外")
-                elif text.lower().startswith("add "):
-                    MENTION = eval(msg.contentMetadata['MENTION'])
-                    inkey = MENTION['MENTIONEES'][0]['M']
-                    if inkey not in ban["admin"]:
-                        ban["admin"].append(str(inkey))
-                        cl.sendMessage(to, "已獲得權限！")
-                    else:
-                        cl.sendMessage(to,"already")
-                    json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
-                elif text.lower().startswith("del "):
-                    MENTION = eval(msg.contentMetadata['MENTION'])
-                    inkey = MENTION['MENTIONEES'][0]['M']
-                    if inkey in ban["admin"]:
-                        ban["admin"].remove(str(inkey))
-                        cl.sendMessage(to, "已取消權限！")
                 elif text.lower().startswith('op '):
                         MENTION = eval(msg.contentMetadata['MENTION'])
                         inkey = MENTION['MENTIONEES'][0]['M']
