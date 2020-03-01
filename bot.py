@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁LINEBOT販售檔 賴88830221 改檔將會錯誤 請小心使用
+#𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷LINEBOT販售檔 賴mvp1688
 from linepy import *
 from datetime import datetime
 from time import sleep
@@ -13,7 +13,7 @@ tkn = json.load(codecs.open("tokens.json","r","utf-8"))
 cl = LINE(tkn["tokens"][0], appName="IOS\t8.14.2\tIphone X\t8.1.0")
 profile = cl.getProfile()
 status = str(profile.statusMessage)
-lock = _name = "|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁  ŁÏŃĚ ßöᴛ運行中...\n\n|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁BOT\n\n✔已運行24høüř\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:|>_<|⟿TⱲ↦Ɍ↻ⅅ↺Ƙ↤⥁ Made in HongKong可以嗎\n我的作者:line.me/ti/p/BZnwIRU5VY\n\n✔Line ID:88830221\n\n"
+lock = _name = "𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷 ŁÏŃĚ ßöᴛ運行中...\n\n𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷\n\n✔已運行\n\n✔ʙᴏᴛ ʀᴜɴɴɪɴɢᴀ ....\n\n作者:𝓗𝓻𝓡𝓿𝓸_𝓒𝓔𝓞↝𝓗𝓪𝓷 Made in HongKong可以嗎\n我的作者:line.me/ti/p/irdQOk2sYR\n\n✔Line ID:mvp16888
 if lock not in status:
     profile.statusMessage = lock + status
     cl.updateProfile(profile)
@@ -35,7 +35,7 @@ clMID = cl.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
-admin=['u87487e8ef1945f9e8fb5a8630a15fe63','u0bfeccf087fbf70fa639c061d3b2136a',clMID]
+admin=['u1f8b4f616d6fb829defd1664545da0e6','u0bfeccf087fbf70fa639c061d3b2136a',clMID]
 msg_dict = {}
 wait2 = {
     'readPoint':{},
@@ -197,14 +197,6 @@ def helpmessage():
 ［tag @標記 次數］重覆標記
 ［call:次數］群組通話邀請
 ［rall:次數］副本通話邀請
-［tr-Tw (text)］翻譯成中文
-［tr-En (text)］翻譯日文
-［tr-Jp (text)］翻譯英文
-［tr-Id (text)］ 翻譯印尼文
-［send-tw (text)］用中文說
-［send-en (text)］用英文說
-［send-jp (text)］用日文說
-［send-id (trxt)］用印尼文說
 """
     return helpMessage
 def lineBot(op):
@@ -218,7 +210,7 @@ def lineBot(op):
                 cl.findAndAddContactsByMid(op.param1)
                 cl.sendMessage(op.param1, "安安！{} 感謝您加我為好友！".format(str(contact.displayName)))
                 cl.sendMessage(op.param1, "目前半垢運行中^^")
-                cl.sendMessage(op.param1, "我的作者:line.me/ti/p/BZnwIRU5VY")
+                cl.sendMessage(op.param1, "我的作者:line.me/ti/p/irdQOk2sYR")
         if op.type == 11:
             group = cl.getGroup(op.param1)
             contact = cl.getContact(op.param2)
@@ -260,7 +252,7 @@ def lineBot(op):
                         cl.acceptGroupInvitation(op.param1)
                         cl.sendMessage(op.param1,text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
                         cl.sendMessage(op.param1, "我的作者：")
-                        cl.sendContact(op.param1, "u0bfeccf087fbf70fa639c061d3b2136a")
+                        cl.sendContact(op.param1, "u1f8b4f616d6fb829defd1664545da0e6")
                     except Exception as error:
                         print(error)
             if clMID in op.param3:
@@ -624,7 +616,7 @@ def lineBot(op):
                     cl.sendMessage(to, str(helpMessage))
                 elif text.lower() == 'bot':
                     cl.sendMessage(to, "我的作者：")
-                    cl.sendContact(to, "u0bfeccf087fbf70fa639c061d3b2136a")
+                    cl.sendContact(to, "u1f8b4f616d6fb829defd1664545da0e6")
                 elif "Ri " in msg.text:
                     Ri0 = text.replace("Ri ","")
                     Ri1 = Ri0.rstrip()
@@ -1195,7 +1187,7 @@ def lineBot(op):
                 elif text.lower() == 'about':
                     try:
                         arr = []
-                        owner = "u0bfeccf087fbf70fa639c061d3b2136a"
+                        owner = "u1f8b4f616d6fb829defd1664545da0e6"
                         creator = cl.getContact(owner)
                         contact = cl.getContact(clMID)
                         grouplist = cl.getGroupIdsJoined()
