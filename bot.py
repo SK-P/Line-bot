@@ -65,6 +65,8 @@ def backupData():
         backup = read
         f = codecs.open('read.json','w','utf-8')
         json.dump(backup, f, sort_keys=True, indent=4, ensure_ascii=False)
+        f = codecs.open('ban.json','w','utf-8')
+        json.dump(backup, f, sort_keys=True, indent=4, ensure_ascii=False)
         return True
     except Exception as error:
         logError(error)
