@@ -95,7 +95,7 @@ def updateProfilePicture(self, path, type='p'):
             raise Exception('Update profile picture failure.')
         return True
 def cek(mid):
-    if mid  in (ban["admin"] + ban["owners"] + set["bots1"]):
+    if mid  in (ban["admin"]):
         return True
     else:
         return False
