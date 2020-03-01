@@ -99,6 +99,10 @@ def cek(mid):
         return True
     else:
         return False
+def banuser(param2):
+    if not cek(param2):
+        ban["blacklist"][param2] = True
+        json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
 def updateProfileVideoPicture(self, path):
         try:
             from ffmpy import FFmpeg
