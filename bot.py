@@ -96,6 +96,17 @@ def updateProfilePicture(self, path, type='p'):
         if r.status_code != 201:
             raise Exception('Update profile picture failure.')
         return True
+def backupData():
+    try: 
+        json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
+        return True
+    except Exception as error:
+        logError(error)
+        return False
+def ismid(mid):
+    try:
+        cl.getContact(mid)
+        return True
 def cek(mid):
     if mid  in (ban["admin"]):
         return True
