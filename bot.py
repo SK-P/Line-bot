@@ -22,6 +22,7 @@ else:
 oepoll = OEPoll(cl)
 readOpen = codecs.open("read.json","r","utf-8")
 settingsOpen = codecs.open("temp.json","r","utf-8")
+ban = json.load(codecs.open("ban.json","r","utf-8"))
 read = json.load(readOpen)
 settings = json.load(settingsOpen)
 myProfile = {
@@ -37,7 +38,11 @@ myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
 admin=['u1f8b4f616d6fb829defd1664545da0e6','u0f3ff7c8aba42b6725638265658aa5b1',clMID]
 msg_dict = {}
-wait2 = {
+wait = {
+    "add" : False,
+    "del" : False,
+}
+wait2= {
     'readPoint':{},
     'readMember':{},
     'setTime':{},
@@ -132,6 +137,7 @@ def helpmessage():
 ［sl On/Off］退群通知 開啟/關閉
 ［ts On/OffI］偵測更新帳號 ex: 個簽, 頭貼, 姓名, 封面 
 ★_個人設定_☆
+［add@］新增權限
 ［Me］丟出自己好友資料
 ［MyMid］查看自己系統識別碼
 ［MyName］查看自己名字
@@ -870,6 +876,21 @@ def lineBot(op):
                         cl.updateGroup(X)
                     else:
                         cl.sendMessage(msg.to,"無法使用在群組外")
+                elif text.lower().startswith("add "):
+                    MENTION = eval(msg.contentMetadata['MENTION'])
+                    inkey = MENTION['MENTIONEES'][0]['M']
+                    if inkey not in ban["admin"]:
+                        ban["admin"].append(str(inkey))
+                        cl.sendMessage(to, "已獲得權限！")
+                    else:
+                        cl.sendMessage(to,"already")
+                    json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
+                elif text.lower().startswith("del "):
+                    MENTION = eval(msg.contentMetadata['MENTION'])
+                    inkey = MENTION['MENTIONEES'][0]['M']
+                    if inkey in ban["admin"]:
+                        ban["admin"].remove(str(inkey))
+                        cl.sendMessage(to, "已取消權限！")
                 elif text.lower().startswith('op '):
                         MENTION = eval(msg.contentMetadata['MENTION'])
                         inkey = MENTION['MENTIONEES'][0]['M']
@@ -880,6 +901,12 @@ def lineBot(op):
                         inkey = MENTION['MENTIONEES'][0]['M']
                         admin.remove(str(inkey))
                         cl.sendMessage(to, "已移除權限！")
+                elif text.lower() == 'add':
+                    wait["add"] = True
+                    cl.sendMessage(to,"Please send a contact")
+                elif text.lower() == 'del':
+                    wait["del"] = True
+                    cl.sendMessage(to,"Please send a Contact")
                 elif text.lower().startswith('mop:'):
                         midd = msg.text.replace("mop:","")
                         admin.append(str(midd))
@@ -1154,6 +1181,28 @@ def lineBot(op):
                             group = cl.findGroupByTicket(ticket_id)
                             cl.acceptGroupInvitationByTicket(group.id,ticket_id)
                             cl.sendMessage(group.id, "網址自動入群-群名 : %s" % str(group.name))
+                elif wait["add"] == True:
+                    if msg._from in ban["owners"]:
+                        if msg.contentMetadata["mid"] in ban["admin"]:
+                           cl.sendmessage(to,"already")
+                           wait["add"] = False
+                        elif msg.contentMetadata["mid"] not in ban["admin"]:
+                           ban["admin"].append(str(msg.contentMetadata["mid"]))
+                           wait["add"] = False
+                           cl.sendMessage(to,"成功新增權限")
+                        else:
+                           cl.sendMessage(to,"使用者於黑單中無法新增權限")
+                        json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
+                elif wait["del"] == True:
+                    if msg._from in ban["owners"]:
+                        if msg.contentMetadata["mid"] not in ban["admin"]:
+                           cl.sendmessage(to,"使用者不在權限中")
+                           wait["del"] = False
+                        else:
+                           ban["admin"].remove(str(msg.contentMetadata["mid"]))
+                           wait["del"] = False
+                           cl.sendMessage(to,"成功移除權限")
+                        json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
                 elif text.lower() == 'test':
                     cl.sendMessage(to, "測試")
                 elif msg.text in ["Friendlist"]:
