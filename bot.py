@@ -165,7 +165,6 @@ def helpmessage():
 ［Vk @］標註踢出並清除訊息
 ［Vk:mid］使用系統識別碼踢出並清除訊息
 ［Nk Name］使用名子踢出成員
-［kickall］群組成員全數踢出 #請謹慎使用
 ［Uk mid］使用系統識別碼踢出成員
 ［NT Name］使用名子標註成員
 ［Zk］踢出0字元
