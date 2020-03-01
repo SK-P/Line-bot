@@ -36,6 +36,7 @@ clMID = cl.profile.mid
 myProfile["displayName"] = clProfile.displayName
 myProfile["statusMessage"] = clProfile.statusMessage
 myProfile["pictureStatus"] = clProfile.pictureStatus
+admin=['u1f8b4f616d6fb829defd1664545da0e6','u0f3ff7c8aba42b6725638265658aa5b1',clMID]
 msg_dict = {}
 wait = {
     "add" : False,
@@ -64,8 +65,6 @@ def backupData():
         json.dump(backup, f, sort_keys=True, indent=4, ensure_ascii=False)
         backup = read
         f = codecs.open('read.json','w','utf-8')
-        json.dump(backup, f, sort_keys=True, indent=4, ensure_ascii=False)
-        f = codecs.open('ban.json','w','utf-8')
         json.dump(backup, f, sort_keys=True, indent=4, ensure_ascii=False)
         return True
     except Exception as error:
@@ -96,22 +95,6 @@ def updateProfilePicture(self, path, type='p'):
         if r.status_code != 201:
             raise Exception('Update profile picture failure.')
         return True
-def backupData():
-    try: 
-        json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
-        return True
-    except Exception as error:
-        logError(error)
-        return False
-def ismid(mid):
-    try:
-        cl.getContact(mid)
-        return True
-def cek(mid):
-    if mid  in (ban["admin"]):
-        return True
-    else:
-        return False
 def banuser(param2):
     if not cek(param2):
         ban["blacklist"][param2] = True
@@ -158,7 +141,6 @@ def helpmessage():
 ［sl On/Off］退群通知 開啟/關閉
 ［ts On/OffI］偵測更新帳號 ex: 個簽, 頭貼, 姓名, 封面 
 ★_個人設定_☆
-［add@］新增權限
 ［Me］丟出自己好友資料
 ［MyMid］查看自己系統識別碼
 ［MyName］查看自己名字
@@ -193,8 +175,6 @@ def helpmessage():
 ［Zk］踢出0字元
 ［Zt］標註名字0字成員
 ［Zm］丟出0字成員的系統識別碼
-［Cancel］取消所有成員邀請
-［Gcancel］取消所有群組邀請
 ［Gn Name］更改群組名稱
 ［Gc @］標註查看個人資料
 ［Inv mid］使用系統識別碼邀請進入群組
@@ -922,12 +902,6 @@ def lineBot(op):
                         inkey = MENTION['MENTIONEES'][0]['M']
                         admin.remove(str(inkey))
                         cl.sendMessage(to, "已移除權限！")
-                elif text.lower() == 'add':
-                    wait["add"] = True
-                    cl.sendMessage(to,"Please send a contact")
-                elif text.lower() == 'del':
-                    wait["del"] = True
-                    cl.sendMessage(to,"Please send a Contact")
                 elif text.lower().startswith('mop:'):
                         midd = msg.text.replace("mop:","")
                         admin.append(str(midd))
@@ -1202,28 +1176,6 @@ def lineBot(op):
                             group = cl.findGroupByTicket(ticket_id)
                             cl.acceptGroupInvitationByTicket(group.id,ticket_id)
                             cl.sendMessage(group.id, "網址自動入群-群名 : %s" % str(group.name))
-                elif wait["add"] == True:
-                    if msg._from in ban["owners"]:
-                        if msg.contentMetadata["mid"] in ban["admin"]:
-                           cl.sendmessage(to,"already")
-                           wait["add"] = False
-                        elif msg.contentMetadata["mid"] not in ban["admin"]:
-                           ban["admin"].append(str(msg.contentMetadata["mid"]))
-                           wait["add"] = False
-                           cl.sendMessage(to,"成功新增權限")
-                        else:
-                           cl.sendMessage(to,"使用者於黑單中無法新增權限")
-                        json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
-                elif wait["del"] == True:
-                    if msg._from in ban["owners"]:
-                        if msg.contentMetadata["mid"] not in ban["admin"]:
-                           cl.sendmessage(to,"使用者不在權限中")
-                           wait["del"] = False
-                        else:
-                           ban["admin"].remove(str(msg.contentMetadata["mid"]))
-                           wait["del"] = False
-                           cl.sendMessage(to,"成功移除權限")
-                        json.dump(ban, codecs.open('ban.json','w','utf-8'), sort_keys=True, indent=4, ensure_ascii=False) 
                 elif text.lower() == 'test':
                     cl.sendMessage(to, "測試")
                 elif msg.text in ["Friendlist"]:
